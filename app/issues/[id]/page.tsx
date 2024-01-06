@@ -14,6 +14,7 @@ const pages = async  ({ params }: Props) => {
     where: { id: parseInt(params.id) }
   })
 
+
   if(!issue) notFound()
 
   return (
