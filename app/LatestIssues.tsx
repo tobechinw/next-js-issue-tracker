@@ -7,10 +7,10 @@ import IssueStatusBadge from './components/IssueStatusBadge';
 const LatestIssues = async () => {
     const issues = await prisma.issue.findMany({
         orderBy: { createdAt: 'desc' },
-        take: 5
-        // include: {
-        //     assignedToUser: true
-        // }
+        take: 5,
+        include: {
+            assignedToUser: true
+        }
     });
 
     return (
@@ -36,14 +36,14 @@ const LatestIssues = async () => {
                                             status={issue.status}
                                         />
                                     </Flex>
-                                    {/* {issue.assignedToUser && (
-                                    <Avatar
-                                        src={issue.assignedToUser.image!}
-                                        fallback="?"
-                                        size="2"
-                                        radius="full"
-                                    />
-                                )} */}
+                                    {issue.assignedToUser && (
+                                        <Avatar
+                                            src={issue.assignedToUser.image!}
+                                            fallback="?"
+                                            size="2"
+                                            radius="full"
+                                        />
+                                    )}
                                 </Flex>
                             </Table.Cell>
                         </Table.Row>
